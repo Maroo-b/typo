@@ -1,7 +1,10 @@
 require 'spec_helper'
 
+
+
 describe CategoriesController, "/index" do
   before do
+    p Blog.all
     Factory(:blog)
     3.times {
       category = Factory(:category)
@@ -201,4 +204,7 @@ describe CategoriesController, "SEO Options" do
     get 'show', :id => 'personal'
     response.should_not have_selector(expected)
   end
+  
+  
+  
 end

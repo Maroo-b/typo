@@ -11,6 +11,12 @@ describe Admin::CategoriesController do
     request.session = { :user => henri.id }
   end
 
+describe  '#new' do
+  it "should render new category form" do
+    get :new
+    response.should render_template(:new)
+    end
+  end
   it "test_index" do
     get :index
     assert_response :redirect, :action => 'index'
