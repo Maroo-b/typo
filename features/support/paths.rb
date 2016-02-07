@@ -11,14 +11,17 @@ module NavigationHelpers
   # step definition in web_steps.rb
   #
   def path_to(page_name)
+    p page_name
     case page_name
-
+     when /^the article page for "(.*)"$/i
+      "/admin/content/edit/#{Article.find_by_title($1).id}"
     when /^the home\s?page$/
       '/'
     when /^the new article page$/
       '/admin/content/new'
     when /^the admin categories page$/
       '/admin/categories/new'
+   
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

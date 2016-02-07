@@ -630,5 +630,25 @@ describe Article do
     end
 
   end
+  
+  describe "#merge_article" do
+    context "diffrent article" do
+      it "create a new article with merged body" do
+        article1 = Factory(:article, :title => 'Article 1!', :state => 'published', :body => 'some text')
+        article2 = Factory(:article, :title => 'Article 2!', :state => 'published', :body => 'more text')
+        article1.merge_article(article2.id)
+        article1.reload
+        article1.body.should == "some text more text"
+      end
+    end
+    
+    context "same article" do 
+      it "return false" do
+        article1 = Factory(:article, :title => 'Article 1!', :state => 'published', :body => 'some text')
+        article1.merge_article(article1.id).should eq false
+        
+      end
+    end
+  end
 end
 
